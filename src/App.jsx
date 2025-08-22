@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { fetchMe } from "./features/auth/authThunks";
+import { useDispatch } from "react-redux";
 
 const App = () => {
-  return (
-    <div className='text-red-400'>Blog App</div>
-  )
-}
+  const dispatch = useDispatch();
 
-export default App
+  useEffect(() => {
+    dispatch(fetchMe());
+  }, [dispatch]);
+
+  return <div className="text-red-400">Blog App</div>;
+};
+
+export default App;

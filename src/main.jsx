@@ -6,14 +6,26 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-       <BrowserRouter>
+      <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          {/* Public Route */}
+          {/* <Route path="/" element={<App />} /> */}
           <Route path="/login" element={<Login />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <App />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </Provider>

@@ -1,22 +1,41 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import authService from './authService';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import authService from "./authService";
 
-export const loginThunk = createAsyncThunk('auth/login', async (payload) => {
-  await authService.login(payload);     
-  const me = await authService.me();    
-  return { user: me };
+// Login thunk
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (credentials, thunkAPI) => {
+    try {
+      const data = await authService.login(credentials);
+      console.log("Login response:", data);
+      return data.user || data; // Handle both response formats
+    } catch (err) {
+      console.error("Login error:", err);
+      return thunkAPI.rejectWithValue(err?.message || "Login failed");
+    }
+  }
+);
+
+// Get current session user
+export const fetchMe = createAsyncThunk("auth/fetchMe", async (_, thunkAPI) => {
+  try {
+    const data = await authService.getMe();
+    return data.user || data;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err?.message || "Not authenticated");
+  }
 });
 
-export const loadProfileThunk = createAsyncThunk('auth/me', async () => {
-  const me = await authService.me();
-  return me;
-});
-
-export const logoutThunk = createAsyncThunk('auth/logout', async () => {
-  try { await authService.logout(); } finally { 
-    console.log("Logged out")
-   }
-  return true;
-});
-
-
+// Logout thunk
+export const logoutUser = createAsyncThunk(
+  "auth/logoutUser",
+  async (_, thunkAPI) => {
+    try {
+      await authService.logout();
+      return true;
+    } catch (err) {
+      console.warn("Logout failed but clearing state:", err);
+      return thunkAPI.rejectWithValue(err?.message || "Not authenticated");
+    }
+  }
+);
