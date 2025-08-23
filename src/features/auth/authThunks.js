@@ -6,12 +6,9 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials, thunkAPI) => {
     try {
-      const data = await authService.login(credentials);
-      console.log("Login response:", data);
-      return data.user || data; // Handle both response formats
+      return await authService.login(credentials);
     } catch (err) {
-      console.error("Login error:", err);
-      return thunkAPI.rejectWithValue(err?.message || "Login failed");
+      return thunkAPI.rejectWithValue(err?.error || "Login failed");
     }
   }
 );
@@ -22,7 +19,7 @@ export const fetchMe = createAsyncThunk("auth/fetchMe", async (_, thunkAPI) => {
     const data = await authService.getMe();
     return data.user || data;
   } catch (err) {
-    return thunkAPI.rejectWithValue(err?.message || "Not authenticated");
+    return thunkAPI.rejectWithValue(err?.error || "Not authenticated");
   }
 });
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../features/auth/authThunks";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function Navbar() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    toast.success("Logged out succesfully");
     navigate("/login");
   };
 
