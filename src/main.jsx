@@ -7,10 +7,12 @@ import Login from "./pages/Login.jsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Navbar from "./components/Headder/Navbar.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
+      <Navbar />
       <BrowserRouter>
         <Routes>
           {/* Public Route */}
