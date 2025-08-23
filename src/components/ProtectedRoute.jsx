@@ -26,8 +26,10 @@ const ProtectedRoute = ({ children, requiredRole = null }) => {
 
   // Check role-based access
   if (requiredRole && user.role !== requiredRole) {
-    return <> <h>Forbiden</h> </>;
-  }
+  return <div className="text-center p-4 text-red-600 font-bold">
+    Access Denied (Requires {requiredRole})
+  </div>;
+}
 
   return children;
 };
