@@ -12,7 +12,7 @@ export const store = configureStore({
     }),
 });
 
-// Make store globally available for axios interceptor
+// store globally available for axios interceptor
 if (typeof window !== 'undefined') {
   window.__REDUX_STORE__ = store;
 }

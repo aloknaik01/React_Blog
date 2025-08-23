@@ -14,7 +14,6 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           {/* Public Route */}
-          {/* <Route path="/" element={<App />} /> */}
           <Route path="/login" element={<Login />} />
 
           {/* Protected Routes */}
