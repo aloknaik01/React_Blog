@@ -12,8 +12,8 @@ import Navbar from "./components/Headder/Navbar.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           {/* Public Route */}
           <Route path="/login" element={<Login />} />
