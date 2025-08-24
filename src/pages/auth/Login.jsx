@@ -16,7 +16,6 @@ export default function Login() {
     password: "",
   });
 
-  console.log(status);
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {

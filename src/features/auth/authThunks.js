@@ -31,8 +31,19 @@ export const logoutUser = createAsyncThunk(
       await authService.logout();
       return true;
     } catch (err) {
-      console.warn("Logout failed but clearing state:", err);
       return thunkAPI.rejectWithValue(err?.message || "Not authenticated");
+    }
+  }
+);
+
+//Register Thunk
+export const registerUser = createAsyncThunk(
+  "auth/register",
+  async (credentials, thunkAPI) => {
+    try {
+      return await authService.register(credentials);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err?.error);
     }
   }
 );

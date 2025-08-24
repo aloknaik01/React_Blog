@@ -15,5 +15,10 @@ const logout = async () => {
   return res.data;
 };
 
-const authService = { login, getMe, logout };
+const register = async (credentials) => {
+  const res = await api.post("/auth/register.php", credentials);
+  return res.data;
+};
+
+const authService = { login, getMe, logout, register };
 export default authService;
