@@ -36,7 +36,7 @@ createRoot(document.getElementById("root")).render(
           reverseOrder={false}
           gutter={8}
           toastOptions={{
-            duration: 1000,
+            duration: 3000,
           }}
         />
       </BrowserRouter>
