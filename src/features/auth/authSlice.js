@@ -1,12 +1,11 @@
-
-
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, fetchMe, logoutUser } from "./authThunks";
+import { loginUser, fetchMe, logoutUser, registerUser } from "./authThunks";
 
 const initialState = {
   user: null,
   status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
+  response: null,
   isAuthenticated: false,
   isInitialized: false,
 };
@@ -77,6 +76,27 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.status = "idle";
         state.error = null;
+      })
+
+      // Register User
+      .addCase(registerUser.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+        state.response = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.response = {
+          status: action.payload?.status,
+          message: action.payload?.message,
+        };
+        state.error = null;
+        state.user = null;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.response = action.payload;
+        state.error = action.payload;
       });
   },
 });
