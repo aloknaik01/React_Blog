@@ -1,0 +1,53 @@
+@import "tailwindcss";
+:root {
+  /* ===== Colors ===== */
+  --color-bg: #111111;
+  --color-bg-dark: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: #9ca3af;
+  --color-primary: #facc15; /* Yellow */
+  --color-primary-hover: #fcd34d;
+
+  /* ===== Semantic Tokens ===== */
+  --color-bg-primary: var(--color-bg);
+  --color-bg-secondary: var(--color-bg-dark);
+
+  /* ===== Typography ===== */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-nav: 0.875rem; /* 14px */
+  --font-size-sub: 0.8125rem; /* 13px */
+
+  /* ===== Spacing & Layout ===== */
+  --header-height: 4rem; /* 64px */
+  --container-padding: 1rem;
+
+  /* ===== Buttons ===== */
+  --btn-height: 2.5rem; /* 40px */
+  --btn-radius: 0.5rem; /* 8px */
+  --btn-padding-x: 1rem;
+  --btn-padding-y: 0.5rem;
+
+  /* ===== Container Widths ===== */
+  --container-width-mobile: 100%;
+  --container-width-tablet: 90%;
+  --container-width-desktop: 80%;
+  --max-container-width: 1280px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  :root {
+    --header-height: 4.5rem; /* 72px */
+    --font-size-nav: 0.9375rem; /* 15px */
+    --container-padding: 1.5rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 5rem; /* 80px */
+    --font-size-nav: 1rem; /* 16px */
+    --container-padding: 2rem;
+  }
+}

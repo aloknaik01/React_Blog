@@ -1,7 +1,12 @@
 import React from "react";
+import Hero from "./components/Hero/Hero";
 
 const App = () => {
-  return <div className="text-red-400">Blog App</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 };
 
 export default App;
