@@ -1,14 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MoveUpRight, Signature } from "lucide-react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../features/auth/authThunks";
+import toast from "react-hot-toast";
 const Navbar = () => {
   const [nav, setNav] = useState("/home");
   console.log(nav);
+  // const [auth, setAuth] = useState(null);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
+
+  function handleLogout() {
+    dispatch(logoutUser());
+    toast.success("Logged out Successfully");
+    navigate("/login");
+  }
+
+  function navigateToLogin() {
+    navigate("/login");
+  }
   function navSetter(slug) {
     setNav(slug);
   }
+
+  useEffect(() => {
+    // setAuth()
+  }, [dispatch]);
 
   const navItems = [
     {
@@ -63,12 +84,27 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <div>
+          <div className="flex justify-center items-center gap-4">
             <button className="bg-[var(--color-primary)] text-[var(--bg-primary)] px-4 py-2 rounded-lg hover:bg-[var(--btn-hover)] duration-300">
-              {" "}
               Contact Us
             </button>
-            {/* <button className="bg-[var(--color-primary)]"> Login</button> */}
+            <div>
+              {!auth.isAuthenticated ? (
+                <button
+                  className="bg-[var(--color-primary)] text-[var(--bg-primary)] px-4 py-2 rounded-lg hover:bg-[var(--btn-hover)] duration-300"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  className="bg-[var(--color-primary)] text-[var(--bg-primary)] px-4 py-2 rounded-lg hover:bg-[var(--btn-hover)] duration-300"
+                  onClick={navigateToLogin}
+                >
+                  Login
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </nav>
