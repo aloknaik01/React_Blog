@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import login from "../../assets/login.webp";
+import Authentication from "../../assets/Authentication.gif";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { loginUser } from "../../features/auth/authThunks";
@@ -46,18 +46,18 @@ export default function Login() {
 
   const isLoading = status === "loading";
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-6xl bg-white shadow-lg m-8 rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--bg-primary)]">
+      <div className="w-full max-w-3xl bg-[var(--bg-secondary)] shadow-lg m-8 rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* Left Side (Form) */}
-        <div className="flex flex-col justify-center p-8 sm:p-12">
-          <h2 className="text-3xl font-bold text-gray-900">Welcome back</h2>
-          <p className="text-gray-500 mt-2">Please enter your details</p>
+        <div className="flex flex-col justify-center p-8 sm:p-12 text-[var(--text-primary)]">
+          <h2 className="text-3xl font-bold ">Welcome back</h2>
+          <p className="text-[var(--text-secondary)] mt-2">
+            Please enter your details
+          </p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
+              <label className="block text-sm">Email address</label>
               <input
                 id="email"
                 name="email"
@@ -67,14 +67,14 @@ export default function Login() {
                 onChange={handleChange}
                 required
                 disabled={isLoading}
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                className="mt-1 w-full px-4 py-2 border border-[var(--text-secondary)] rounded-lg
+               text-[var(--text-primary)]
+               focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium   text-gray-700">
-                Password
-              </label>
+              <label className="block text-sm ">Password</label>
               <input
                 id="password"
                 name="password"
@@ -84,30 +84,32 @@ export default function Login() {
                 onChange={handleChange}
                 required
                 disabled={isLoading}
-                className=" mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none"
+                className="mt-1 w-full px-4 py-2 border border-[var(--text-secondary)] rounded-lg
+               text-[var(--text-primary)]
+               focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] outline-none"
               />
             </div>
 
-            <div className="flex items-center justify-between text-sm">
-              <label className=" text-black flex items-center gap-2">
-                <input type="checkbox" className="rounded border-gray-300 " />
-                Remember
-              </label>
-              <a href="#" className="text-purple-600 hover:underline">
+            <div className="text-sm ">
+              <Link to="#" className="text-[var(--btn-hover)] hover:underline">
                 Forgot password
-              </a>
+              </Link>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-purple-600 text-white py-2 rounded-lg font-medium hover:bg-purple-700 transition"
+              className="w-full bg-[var(--color-primary)] text-black py-2 rounded-lg hover:bg-[var(--btn-hover)]  transition"
+              disabled={isLoading}
             >
               Sign in
             </button>
 
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-[var(--text-secondary)]">
               Don&apos;t have an account?{" "}
-              <Link to="/register" className="text-purple-600 hover:underline">
+              <Link
+                to="/register"
+                className="text-[var(--btn-hover)] hover:underline"
+              >
                 Sign up
               </Link>
             </p>
@@ -115,8 +117,8 @@ export default function Login() {
         </div>
 
         {/* Right Side (Illustration) */}
-        <div className="hidden md:flex items-center justify-center bg-purple-100 p-8">
-          <img src={login} alt="Illustration" className="max-w-md w-full" />
+        <div className="hidden md:flex items-center justify-center bg-[#ffd119] p-8">
+          <img src={Authentication} alt="Illustration" className="max-w-md w-full" />
         </div>
       </div>
     </div>

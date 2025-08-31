@@ -10,8 +10,8 @@ import { store } from "./app/store.js";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Register from "./pages/auth/Register.jsx";
 import { Toaster } from "react-hot-toast";
-import Header from "./components/Headder/Header.jsx";
-import Navbar from "./components/Headder/Nav/Navbar.jsx";
+import Navbar from "./components/Nav/Navbar.jsx";
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
