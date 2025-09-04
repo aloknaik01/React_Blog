@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../features/auth/authThunks";
 import toast from "react-hot-toast";
+
 const Navbar = () => {
   const [nav, setNav] = useState("/home");
   console.log(nav);
@@ -49,9 +50,10 @@ const Navbar = () => {
       slug: "/education",
     },
   ];
+
   return (
-    <header className="min-w[1440px] min-h-[126px] relative ">
-      <div className="h-[45px] bg-[var(--bg-primary)]  flex justify-center items-center">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-custom border-b border-border">
+      <div className=" container mx-auto h-[45px]  px-4 py-4  flex justify-center items-center">
         <div className="h-[21px]">
           <p className="text-[var(--text-secondary)] w-[415px] text-center  mx-auto text-[14px] ">
             Subscribe to our Newsletter For New & latest Blogs and Resources
