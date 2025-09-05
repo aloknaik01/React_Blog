@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, Menu, X, MoveUpRight, Signature } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [active, setActive] = useState("home");
+
+  const auth = useSelector((state) => state.auth);
+  console.log(auth.isAuthenticated);
+
+  useEffect(() => {}, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -11,8 +18,6 @@ const Header = () => {
     { name: "Most popular", href: "#" },
     { name: "Tech", href: "#" },
   ];
-
-  const [active, setActive] = useState("home");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-custom border-b border-border">
@@ -24,6 +29,7 @@ const Header = () => {
         </div>
         <MoveUpRight className="text-primary w-4 h-4" />
       </div>
+
       <div className="bg-secondary">
         <div className="container mx-auto px-4 py-4 ">
           <div className="flex items-center justify-between">
@@ -65,6 +71,10 @@ const Header = () => {
                   className="pl-10 w-64 bg-primary-foreground border-border focus:border-primary p-3 rounded-sm"
                 />
               </div>
+
+              <button className="bg-primary px-4 py-2 text-secondary rounded-sm font-semibold hover:bg-yellow-500 duration-200 ">
+                {auth.isAuthenticated ? "Logout" : "Login"}
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
