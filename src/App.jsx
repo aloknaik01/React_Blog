@@ -8,38 +8,40 @@ import Register from "./pages/auth/Register.jsx";
 import { Toaster } from "react-hot-toast";
 import Index from "./pages/Index.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
-
+import Header from "./components/Header.jsx";
 const App = () => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          {/* Public Route */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+    <div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            {/* Public Route */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <Index />
-              </ProtectedRoute>
-            }
+            {/* Protected Routes */}
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <Index />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+            gutter={8}
+            toastOptions={{
+              duration: 3000,
+            }}
           />
-
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Toaster
-          position="top-right"
-          reverseOrder={false}
-          gutter={8}
-          toastOptions={{
-            duration: 3000,
-          }}
-        />
-      </BrowserRouter>
-    </Provider>
+        </BrowserRouter>
+      </Provider>
+    </div>
   );
 };
 

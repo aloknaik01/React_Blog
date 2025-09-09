@@ -22,6 +22,8 @@ const ProtectedRoute = ({ children, requiredRole = null }) => {
         replace 
       />
     );
+  } else {
+    <Navigate to={'/home'}/>
   }
 
   // Check role-based access
