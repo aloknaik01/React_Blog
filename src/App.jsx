@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 import Header from "./components/Header.jsx";
 const App = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-bg-primary">
       <Provider store={store}>
         <BrowserRouter>
           <Header />
